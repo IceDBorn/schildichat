@@ -1,0 +1,55 @@
+diff --git a/element-web/src/vector/jitsi/index.ts b/element-web/src/vector/jitsi/index.ts
+index 77379fe20..6778f06aa 100644
+--- a/element-web/src/vector/jitsi/index.ts
++++ b/element-web/src/vector/jitsi/index.ts
+@@ -414,7 +414,7 @@ async function joinConference(audioInput?: string | null, videoInput?: string |
+         // deployments that have it enabled
+         options.configOverwrite.prejoinConfig = { enabled: false };
+         // Use a simplified set of toolbar buttons
+-        options.configOverwrite.toolbarButtons = ["microphone", "camera", "tileview", "hangup"];
++        options.configOverwrite.toolbarButtons = ["microphone", "camera", "tileview", "hangup", "sharedvideo", "invite", "fullscreen", "noisesuppression", "shortcuts", "videoquality"];
+         // Note: We can hide the screenshare button in video rooms but not in
+         // normal conference calls, since in video rooms we control exactly what
+         // set of controls appear, but in normal calls we need to leave that up
+@@ -426,6 +426,41 @@ async function joinConference(audioInput?: string | null, videoInput?: string |
+         // Remove the ability to hide your own tile, since we're hiding the
+         // settings button which would be the only way to get it back
+         options.configOverwrite.disableSelfViewSettings = true;
++        // Custom jitsi config
++        options.configOverwrite.desktopSharingFrameRate = {
++            min: 30,
++            max: 60,
++        };
++        options.configOverwrite.disableReactions = true;
++        options.configOverwrite.disablePolls = true;
++        options.configOverwrite.liveStreaming = { enabled: false };
++        options.configOverwrite.constraints = {
++          video: {
++            height: {
++              ideal: 1080,
++              max: 2160,
++              min: 720,
++            }
++          }
++        };
++        options.configOverwrite.resolution = 1080;
++        options.configOverwrite.maxBitratesVideo = {
++          H264: {
++            low: 200000,
++            standard: 500000,
++            high: 1500000,
++          },
++          VP8: {
++            low: 200000,
++            standard: 500000,
++            high: 1500000,
++          },
++          VP9: {
++            low: 100000,
++            standard: 300000,
++            high: 1200000,
++          }
++        };
+     }
+ 
+     meetApi = new JitsiMeetExternalAPI(jitsiDomain, options);
