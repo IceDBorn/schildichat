@@ -51,7 +51,7 @@ CSC_NAME ?=
 -include release.mk
 
 setup:
-	./setup.sh
+	bash setup.sh
 
 element-desktop/build/SchildiChat.xcassets/SchildiChat.iconset: $(wildcard element-desktop/build/SchildiChat.xcassets/SchildiChat.iconset/*)
 

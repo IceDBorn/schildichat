@@ -1,3 +1,10 @@
+# NixOS Build
+```
+git clone -b nix-jitsi-improvements --recurse-submodules https://github.com/IceDBorn/schildichat.git
+cd schildichat
+bash nix-build.sh
+```
+
 # SchildiChat Web/Desktop
 
 SchildiChat Web/Desktop is a fork of Element [Web](https://github.com/vector-im/element-web)/[Desktop](https://github.com/vector-im/element-desktop).
